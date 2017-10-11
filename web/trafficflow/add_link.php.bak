@@ -1,0 +1,17 @@
+
+<?php
+//增加流量图链接
+$des=$_POST['description'];
+$link=$_POST['link'];
+$usr=$_POST['username'];
+
+$conn = mysql_connect("localhost", "root", "both-win") or die("数据库链接错误".mysql_error());
+mysql_select_db("trafficflow",$conn) or die("数据库访问错误".mysql_error());
+mysql_query("set names utf8");
+
+$insert_link = "insert into tf_link (description,link,username) values ('".$des."','".$link."','".$usr."')";
+mysql_query($insert_link) or die("增加流量图形失败".mysql_error());
+mysql_close($conn);
+exit('流量图形已添加！点击此处 <a href="javascript:history.back(-1);">返回</a> ');
+
+?>
